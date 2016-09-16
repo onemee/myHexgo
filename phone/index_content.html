@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="index1_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script>
+        appcan.ready(function() {
+            
+        appcan.window.subscribe('2',function(msg){
+              //alert(msg);
+              if(msg=='hi'){
+               uexHexagonal.close();
+               showPic(); 
+               }
+            });
+           showPic();   
+        });
+    function showPic(){       
+        var jsonstr = {"value":[
+              {"pic" : "res://1.png","text" : "公司简介"},
+              {"pic" : "res://2.png","text" : "企业招聘"},
+              {"pic" : "res://3.png","text" : "产品简介"},
+              {"pic" : "res://4.png","text" : "合作伙伴"},
+              {"pic" : "res://5.png","text" : "经典案例"},
+              {"pic" : "res://6.png","text" : "联系我们"}
+              ]
+            };
+        var jsonstr2 = {"value":[
+              {"pic" : "res://a1.png","text" : "公司简介"},
+              {"pic" : "res://a2.png","text" : "企业招聘"},
+              {"pic" : "res://a3.png","text" : "产品简介"},
+              {"pic" : "res://a4.png","text" : "合作伙伴"},
+              {"pic" : "res://a5.png","text" : "经典案例"},
+              {"pic" : "res://a6.png","text" : "联系我们"}
+              ]
+            };    
+            var w = screen.availWidth;
+            var h = screen.availHeight;
+            var value = uexWidgetOne.platformName;
+            if (value == "iOS") {
+                uexHexagonal.setPrismParam(JSON.stringify(jsonstr));
+            } else {
+                uexHexagonal.setPrismParam(JSON.stringify(jsonstr2));
+            }
+          //uexHexagonal.setPrismParam(JSON.stringify(jsonstr));
+          uexHexagonal.open(0, 0, w, h);
+          
+          uexHexagonal.onItemClick=function(index){
+              //alert(index);
+              uexHexagonal.close();
+              switch(index){
+                 case 0:
+                 appcan.window.open({
+                     name:"about",
+                     data:"about.html"
+                 });
+                 break; 
+                 case 1:
+                 appcan.window.open({
+                     name:"job",
+                     data:"job.html"
+                 });
+                 break; 
+                  case 2:
+                 appcan.window.open({
+                     name:"product",
+                     data:"product.html"
+                 });
+                 break; 
+                  case 3:
+                 appcan.window.open({
+                     name:"cooperation",
+                     data:"cooperation.html"
+                 });
+                 break; 
+                  case 4:
+                 appcan.window.open({
+                     name:"case",
+                     data:"case.html"
+                 });
+                 break; 
+                 default:
+                 appcan.window.open({
+                     name:"contact",
+                     data:"contact.html"
+                 });
+                  
+              }
+             
+          } 
+    }     
+     
+    </script>
+</html>
